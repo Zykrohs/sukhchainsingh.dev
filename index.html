@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sukhchain Singh | Finance, Analytics and Code</title>
+  <meta name="description" content="Portfolio of Sukhchain Singh, a UQ Advanced Finance and Economics student building finance, analytics and coding projects." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23060707'/%3E%3Cpath d='M15 42c4 6 11 8 18 8 9 0 16-5 16-13 0-8-6-11-17-14-6-2-8-3-8-6 0-3 3-5 8-5 5 0 9 2 13 5l5-8C45 5 39 3 32 3 21 3 14 9 14 18c0 8 6 12 17 15 6 2 8 3 8 6 0 3-3 5-7 5-6 0-11-2-15-7l-2 5z' fill='%23ff6b1a'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <div class="cursor-glow" aria-hidden="true"></div>
+
+  <header class="site-header" id="top">
+    <a class="brand" href="#home" aria-label="Go to homepage">
+      <span class="brand-mark">SS</span>
+      <span class="brand-name">Sukhchain Singh</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#work">Work</a>
+      <a href="#toolkit">Toolkit</a>
+      <a href="#profile">Profile</a>
+      <a href="#lab">Mini lab</a>
+      <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="https://www.instagram.com/zykrohs/" target="_blank" rel="noreferrer">Instagram</a>
+      <a href="https://au.linkedin.com/in/sukhchain-s" target="_blank" rel="noreferrer">LinkedIn</a>
+      <button class="theme-toggle" type="button" aria-label="Toggle dark and light mode">
+        <span class="theme-dot"></span>
+        <span class="theme-label">Dark</span>
+      </button>
+      <button class="menu-button" type="button" aria-label="Open menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <aside class="mobile-menu" aria-hidden="true">
+    <button class="mobile-close" type="button" aria-label="Close menu">Close</button>
+    <a href="#work">Work</a>
+    <a href="#toolkit">Toolkit</a>
+    <a href="#profile">Profile</a>
+    <a href="#lab">Mini lab</a>
+    <a href="#contact">Contact</a>
+    <a href="https://www.instagram.com/zykrohs/" target="_blank" rel="noreferrer">Instagram</a>
+    <a href="https://au.linkedin.com/in/sukhchain-s" target="_blank" rel="noreferrer">LinkedIn</a>
+    <a href="https://github.com/Zykrohs" target="_blank" rel="noreferrer">GitHub</a>
+  </aside>
+
+  <main>
+    <section class="hero section" id="home">
+      <div class="hero-copy reveal">
+        <p class="eyebrow">whoami_</p>
+        <h1>Sukhchain<br><em>Singh.</em></h1>
+        <p class="hero-text">
+          Advanced Finance and Economics student at UQ. I build practical finance and data tools with Python, Excel and clear assumptions.
+        </p>
+        <div class="hero-actions">
+          <a class="button primary" href="#work">View work</a>
+          <a class="button ghost" href="https://www.instagram.com/zykrohs/" target="_blank" rel="noreferrer">Instagram</a>
+          <a class="button ghost" href="https://au.linkedin.com/in/sukhchain-s" target="_blank" rel="noreferrer">LinkedIn</a>
+          <a class="button ghost" href="https://github.com/Zykrohs" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </div>
+
+      <div class="hero-desk reveal delay-1">
+        <div class="asx-card">
+          <div class="asx-head">
+            <span>ASX desk</span>
+            <strong id="marketStatus">Checking</strong>
+          </div>
+          <div class="asx-time" id="sydneyTime">--:--:--</div>
+          <div class="asx-sub" id="marketCountdown">Sydney time</div>
+          <canvas id="sparkline" width="460" height="130" aria-label="Animated market sparkline"></canvas>
+        </div>
+
+        <div class="desk-board" aria-label="Interactive finance keyboard">
+          <button class="desk-key" data-key="python">PY</button>
+          <button class="desk-key" data-key="pandas">PD</button>
+          <button class="desk-key" data-key="sql">SQL</button>
+          <button class="desk-key" data-key="model">MOD</button>
+          <button class="desk-key active" data-key="risk">RISK</button>
+          <button class="desk-key" data-key="dcf">DCF</button>
+          <button class="desk-key" data-key="git">GIT</button>
+          <button class="desk-key" data-key="chart">CHART</button>
+        </div>
+      </div>
+
+      <a class="scroll-cue" href="#work" aria-label="Scroll to work"></a>
+    </section>
+
+    <section class="section split-section" id="work">
+      <div class="section-intro reveal">
+        <p class="eyebrow">latest work_</p>
+        <h2>Selected finance and software projects.</h2>
+        <p>Formal enough for a resume. Practical enough to show how the work was built.</p>
+      </div>
+
+      <div class="work-controls reveal delay-1" role="tablist" aria-label="Project filters">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="quant">Quant</button>
+        <button class="filter" data-filter="data">Data</button>
+        <button class="filter" data-filter="model">Modelling</button>
+        <button class="filter" data-filter="systems">Systems</button>
+      </div>
+
+      <div class="project-grid">
+        <article class="project-card reveal" data-tags="quant data systems">
+          <div class="project-visual chart-visual"></div>
+          <p class="project-type">Python / Portfolio analytics</p>
+          <h3>Multi-asset portfolio analytics toolkit</h3>
+          <p>Performance workflow covering returns, volatility, Sharpe ratios, tracking error, drawdowns and benchmark comparison.</p>
+          <div class="project-extra">
+            <span>Stack: Python, Pandas, NumPy, Matplotlib, Jupyter</span>
+            <span>Output: charts, CSV outputs and report-ready tables</span>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-tags="quant model">
+          <div class="project-visual attribution-visual"></div>
+          <p class="project-type">Attribution / Active return</p>
+          <h3>Performance attribution engine</h3>
+          <p>Brinson-style attribution model used to separate portfolio active return into allocation and selection effects.</p>
+          <div class="project-extra">
+            <span>Stack: Python, Pandas, financial performance logic</span>
+            <span>Output: allocation, selection and sleeve-level analysis</span>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-tags="data systems">
+          <div class="project-visual pipeline-visual"></div>
+          <p class="project-type">Data pipeline</p>
+          <h3>Market data processing pipeline</h3>
+          <p>Reusable workflow for downloading, cleaning and transforming market data into monthly return series.</p>
+          <div class="project-extra">
+            <span>Stack: Python, yfinance, Pandas, Git</span>
+            <span>Output: clean return data for analysis and modelling</span>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-tags="quant model systems">
+          <div class="project-visual risk-visual"></div>
+          <p class="project-type">Risk / Derivatives</p>
+          <h3>Risk and derivatives desk</h3>
+          <p>Yield-curve and exposure analysis project built around trading-desk style logic, scenarios and risk interpretation.</p>
+          <div class="project-extra">
+            <span>Stack: Python, Jupyter, yield curve logic</span>
+            <span>Output: structured risk views and scenario outputs</span>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-tags="model data">
+          <div class="project-visual model-visual"></div>
+          <p class="project-type">Financial modelling</p>
+          <h3>Scenario modelling dashboard</h3>
+          <p>Forecasting model with bull, base and bear cases, sensitivity testing, break-even logic and cash-flow commentary.</p>
+          <div class="project-extra">
+            <span>Stack: Excel, scenario logic, charts, presentation outputs</span>
+            <span>Output: financial model and decision-ready summaries</span>
+          </div>
+        </article>
+
+        <article class="project-card reveal" data-tags="systems data">
+          <div class="project-visual report-visual"></div>
+          <p class="project-type">Reporting automation</p>
+          <h3>Notebook reporting pipeline</h3>
+          <p>Jupyter-to-report workflow for turning technical notebooks into clean HTML and PDF deliverables.</p>
+          <div class="project-extra">
+            <span>Stack: Jupyter, nbconvert, Playwright, CSS</span>
+            <span>Output: reproducible reports with readable tables and charts</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section toolkit-section" id="toolkit">
+      <div class="section-intro reveal">
+        <p class="eyebrow">toolkit_</p>
+        <h2>Interactive desk.</h2>
+        <p>Click a key to see how I usually approach a finance or data problem.</p>
+      </div>
+
+      <div class="toolkit-layout reveal delay-1">
+        <div class="keyboard-stage">
+          <div class="keyboard-shell">
+            <button class="big-key" data-key="python">Python</button>
+            <button class="big-key" data-key="pandas">Pandas</button>
+            <button class="big-key" data-key="sql">SQL</button>
+            <button class="big-key" data-key="model">Model</button>
+            <button class="big-key active" data-key="risk">Risk</button>
+            <button class="big-key" data-key="dcf">DCF</button>
+            <button class="big-key" data-key="git">Git</button>
+            <button class="big-key" data-key="chart">Charts</button>
+          </div>
+        </div>
+
+        <div class="readout-panel">
+          <div class="window-dots"><span></span><span></span><span></span></div>
+          <p class="readout-label" id="readoutLabel">Risk</p>
+          <h3 id="readoutTitle">Check the downside before trusting the upside.</h3>
+          <p id="readoutBody">I use volatility, drawdowns, tracking error and stress tests to make sure the result is not only attractive on paper.</p>
+          <div class="code-lines" id="readoutLines">
+            <code>$ calculate drawdown</code>
+            <code>$ run stress scenario</code>
+            <code>$ compare risk to benchmark</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section profile-section" id="profile">
+      <div class="profile-card reveal">
+        <div>
+          <p class="eyebrow">profile_</p>
+          <h2>Finance with a technical workflow.</h2>
+        </div>
+        <div class="profile-copy">
+          <p>
+            I study Advanced Finance and Economics at The University of Queensland. My main interest is applying finance theory with practical tools, especially where market data, modelling and clear communication meet.
+          </p>
+          <p>
+            I am comfortable working across Python, Excel and Jupyter. I focus on building outputs that are easy to check, explain and present.
+          </p>
+        </div>
+        <div class="profile-selector" aria-label="Profile focus selector">
+          <button class="profile-chip active" data-profile="analysis">Analysis</button>
+          <button class="profile-chip" data-profile="markets">Markets</button>
+          <button class="profile-chip" data-profile="delivery">Delivery</button>
+        </div>
+        <p class="profile-output" id="profileOutput">I like work that turns raw information into clear decisions. That usually means clean data, transparent assumptions and outputs that can be tested.</p>
+      </div>
+    </section>
+
+    <section class="section lab-section" id="lab">
+      <div class="section-intro reveal">
+        <p class="eyebrow">mini lab_</p>
+        <h2>Small interactive finance toys.</h2>
+        <p>Simple, lightweight interactions that make the site feel less static.</p>
+      </div>
+
+      <div class="lab-grid">
+        <article class="lab-card reveal">
+          <p class="lab-tag">game</p>
+          <h3>Mispricing Hunt</h3>
+          <p>Pick the security with the largest gap between market price and fair value.</p>
+          <button class="button primary" id="openGame">Play round</button>
+        </article>
+        <article class="lab-card reveal delay-1">
+          <p class="lab-tag">simulation</p>
+          <h3>Risk Dial</h3>
+          <p>Move the slider and watch the portfolio view change.</p>
+          <input id="riskSlider" class="risk-slider" type="range" min="0" max="100" value="52" />
+          <div class="risk-output">
+            <span id="riskMode">Balanced growth</span>
+            <strong id="riskScore">52</strong>
+          </div>
+        </article>
+        <article class="lab-card reveal delay-2">
+          <p class="lab-tag">shortcut</p>
+          <h3>Command menu</h3>
+          <p>Press Ctrl + K to jump around the site or open the mini game.</p>
+          <button class="button ghost" id="openCommand">Open menu</button>
+        </article>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <div class="contact-card reveal">
+        <div>
+          <p class="eyebrow">contact_</p>
+          <h2>Contact.</h2>
+          <p>Find me online or send a short note.</p>
+          <div class="contact-links">
+            <a href="https://www.instagram.com/zykrohs/" target="_blank" rel="noreferrer">Instagram</a>
+            <a href="https://au.linkedin.com/in/sukhchain-s" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="https://github.com/Zykrohs" target="_blank" rel="noreferrer">GitHub</a>
+          </div>
+        </div>
+        <form action="https://formspree.io/f/xgoddqlp" method="POST">
+          <label>
+            <span>Name</span>
+            <input type="text" name="name" placeholder="Your name" required />
+          </label>
+          <label>
+            <span>Contact</span>
+            <input type="text" name="contact" placeholder="Email, Instagram or LinkedIn" required />
+          </label>
+          <label>
+            <span>Message</span>
+            <textarea name="message" placeholder="What are you working on?" required></textarea>
+          </label>
+          <button class="button primary" type="submit">Send message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>© 2026 Sukhchain Singh</span>
+    <a href="#home">Back to top</a>
+  </footer>
+
+  <div class="modal" id="gameModal" aria-hidden="true" role="dialog" aria-label="Mispricing Hunt game">
+    <div class="modal-card">
+      <button class="modal-close" type="button" data-close="gameModal">Close</button>
+      <p class="eyebrow">mispricing hunt_</p>
+      <h3>Find the widest gap.</h3>
+      <p class="modal-copy">Choose the asset with the largest absolute gap between fair value and market price.</p>
+      <div class="game-grid" id="gameGrid"></div>
+      <div class="game-result" id="gameResult">New round loaded.</div>
+      <button class="button ghost" id="newRound">New round</button>
+    </div>
+  </div>
+
+  <div class="command-menu" id="commandMenu" aria-hidden="true" role="dialog" aria-label="Command menu">
+    <div class="command-card">
+      <button class="modal-close" type="button" data-close="commandMenu">Close</button>
+      <p class="eyebrow">command_</p>
+      <button data-command="#work">Open work</button>
+      <button data-command="#toolkit">Open toolkit</button>
+      <button data-command="#profile">Open profile</button>
+      <button data-command="game">Play Mispricing Hunt</button>
+      <button data-command="theme">Toggle theme</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
