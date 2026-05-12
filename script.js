@@ -1,3 +1,19 @@
+
+const loader = document.getElementById('loader');
+const soundToggle = document.querySelector('.sound-toggle');
+let soundEnabled = true;
+window.addEventListener('load', () => {
+  setTimeout(() => loader?.classList.add('hidden'), 650);
+});
+soundToggle?.addEventListener('click', () => {
+  soundEnabled = !soundEnabled;
+  soundToggle.textContent = soundEnabled ? 'Sound On' : 'Sound Off';
+  soundToggle.classList.toggle('off', !soundEnabled);
+  if (soundEnabled) playTone(520, .055, 'triangle');
+});
+window.addEventListener('pointerdown', () => {
+  if (soundEnabled) playTone(180, .035, 'sine');
+}, { once: true });
 const root = document.documentElement;
 const cursor = document.querySelector('.cursor-dot');
 const themeButton = document.querySelector('.theme-button');
@@ -39,6 +55,7 @@ function closeMenu() {
 
 let audioCtx;
 function playTone(freq = 420, duration = 0.055, type = 'sine') {
+  if (!soundEnabled) return;
   try {
     audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
     const osc = audioCtx.createOscillator();
@@ -63,7 +80,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
 
 const skillCaption = document.getElementById('skillCaption');
-const techKeys = Array.from(document.querySelectorAll('.tech-key'));
+const techKeys = Array.from(document.querySelectorAll('.ref-key, .tech-key'));
 const soundMap = [240, 275, 310, 350, 390, 430, 470, 520, 570, 620, 670, 720, 760, 810, 860, 910, 960, 1020, 1070, 1120, 1180, 1240, 1300, 1360];
 
 techKeys.forEach((key, index) => {
@@ -124,3 +141,30 @@ function drawStars() {
 window.addEventListener('resize', resizeCanvas);
 resizeCanvas();
 drawStars();
+
+
+const board = document.querySelector('.tech-board-ref');
+function popBoard(){
+  if (!board) return;
+  board.classList.remove('pop');
+  void board.offsetWidth;
+  board.classList.add('pop');
+  setTimeout(()=>board.classList.remove('pop'), 460);
+}
+document.querySelectorAll('.ref-key').forEach((key, index) => {
+  key.addEventListener('click', () => popBoard());
+  key.addEventListener('mouseenter', () => {
+    key.animate([
+      { transform: getComputedStyle(key).transform },
+      { transform: 'translateZ(48px) translateY(-9px) rotateZ(-1.4deg)' },
+      { transform: getComputedStyle(key).transform }
+    ], { duration: 240, easing: 'ease-out' });
+  });
+});
+window.addEventListener('keydown', (event) => {
+  const isTyping = ['INPUT','TEXTAREA'].includes(document.activeElement?.tagName);
+  if (!isTyping && !event.metaKey && !event.ctrlKey && !event.altKey) popBoard();
+});
+document.querySelectorAll('a, button').forEach((el) => {
+  el.addEventListener('mouseenter', () => playTone(740, .025, 'sine'));
+});

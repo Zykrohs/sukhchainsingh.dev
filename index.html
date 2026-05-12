@@ -12,6 +12,16 @@
   <canvas id="starfield" aria-hidden="true"></canvas>
   <div class="cursor-dot" aria-hidden="true"></div>
 
+  <div class="loader" id="loader" aria-label="Loading portfolio">
+    <div class="loader-card">
+      <span class="loader-mark">SS</span>
+      <p>Loading portfolio</p>
+      <div class="loader-bar"><span></span></div>
+    </div>
+  </div>
+
+  <button class="sound-toggle" type="button" aria-label="Toggle sound">Sound On</button>
+
   <header class="site-header" id="top">
     <a class="header-name" href="#home">Sukhchain Singh</a>
     <div class="header-right">
@@ -55,16 +65,14 @@
           </div>
         </div>
 
-        <div class="hero-object reveal delay-1" aria-label="Floating technical keyboard illustration">
-          <div class="floating-board small-board">
-            <span class="key orange">PY</span>
-            <span class="key blue">SQL</span>
-            <span class="key lime">RISK</span>
-            <span class="key dark">DCF</span>
-            <span class="key dark">Git</span>
-            <span class="key orange">Data</span>
-            <span class="key blue">Model</span>
-            <span class="key dark">Chart</span>
+        <div class="hero-panel reveal delay-1" aria-label="Portfolio snapshot">
+          <div class="panel-top"><span></span><span></span><span></span></div>
+          <p class="panel-label">current focus</p>
+          <div class="panel-lines">
+            <span>portfolio analytics</span>
+            <span>market data workflows</span>
+            <span>financial modelling</span>
+            <span>clean reporting systems</span>
           </div>
         </div>
       </div>
@@ -74,40 +82,40 @@
     <section class="section skills-section" id="skills">
       <div class="section-heading center reveal">
         <h2>Tech Stack</h2>
-        <p>I am not limited to just these. Hint: press any key.</p>
+        <p>I am not limited to just these. Press any key.</p>
       </div>
 
-      <div class="stack-showcase reference-style reveal delay-1">
-        <div class="skill-caption" id="skillCaption">Python</div>
-        <div class="big-tech-board" aria-label="Interactive tech stack keyboard">
-          <button class="tech-key orange active" data-skill="JavaScript" aria-label="JavaScript"><span>JS</span></button>
-          <button class="tech-key blue" data-skill="TypeScript" aria-label="TypeScript"><span>TS</span></button>
-          <button class="tech-key red" data-skill="HTML" aria-label="HTML"><span>HTML</span></button>
-          <button class="tech-key purple" data-skill="CSS" aria-label="CSS"><span>CSS</span></button>
-          <button class="tech-key cyan" data-skill="React" aria-label="React"><span>⚛</span></button>
-          <button class="tech-key green" data-skill="Python" aria-label="Python"><span>PY</span></button>
+      <div class="stack-stage reveal delay-1" aria-label="Interactive tech stack board">
+        <div class="tech-board-ref">
+          <button class="ref-key orange" data-skill="JavaScript"><span>JS</span></button>
+          <button class="ref-key blue" data-skill="TypeScript"><span>TS</span></button>
+          <button class="ref-key red" data-skill="HTML"><span>HTML</span></button>
+          <button class="ref-key purple" data-skill="CSS"><span>CSS</span></button>
+          <button class="ref-key cyan" data-skill="React"><span>React</span></button>
+          <button class="ref-key green" data-skill="Vue"><span>Vue</span></button>
 
-          <button class="tech-key dark" data-skill="Next.js" aria-label="Next.js"><span>N</span></button>
-          <button class="tech-key cyan" data-skill="Tailwind" aria-label="Tailwind CSS"><span>TW</span></button>
-          <button class="tech-key green" data-skill="Node.js" aria-label="Node.js"><span>Node</span></button>
-          <button class="tech-key dark" data-skill="SQL" aria-label="SQL"><span>SQL</span></button>
-          <button class="tech-key blue" data-skill="Pandas" aria-label="Pandas"><span>PD</span></button>
-          <button class="tech-key green" data-skill="NumPy" aria-label="NumPy"><span>NP</span></button>
+          <button class="ref-key light" data-skill="Next.js"><span>Next</span></button>
+          <button class="ref-key cyan" data-skill="Tailwind"><span>TW</span></button>
+          <button class="ref-key green" data-skill="Node.js"><span>Node</span></button>
+          <button class="ref-key dark" data-skill="Express"><span>EX</span></button>
+          <button class="ref-key steel" data-skill="PostgreSQL"><span>SQL</span></button>
+          <button class="ref-key green" data-skill="MongoDB"><span>DB</span></button>
 
-          <button class="tech-key red" data-skill="Git" aria-label="Git"><span>Git</span></button>
-          <button class="tech-key dark" data-skill="GitHub" aria-label="GitHub"><span>GH</span></button>
-          <button class="tech-key dark glyph" data-skill="Jupyter" aria-label="Jupyter"><span>Jupyter</span></button>
-          <button class="tech-key crimson" data-skill="Excel / VBA" aria-label="Excel and VBA"><span>XL</span></button>
-          <button class="tech-key yellow" data-skill="APIs" aria-label="APIs"><span>API</span></button>
-          <button class="tech-key blue" data-skill="Matplotlib" aria-label="Matplotlib"><span>Plot</span></button>
+          <button class="ref-key red" data-skill="Git"><span>Git</span></button>
+          <button class="ref-key dark" data-skill="GitHub"><span>GH</span></button>
+          <button class="ref-key grid" data-skill="Jupyter"><span>Jupyter</span></button>
+          <button class="ref-key crimson" data-skill="Excel"><span>XL</span></button>
+          <button class="ref-key yellow" data-skill="APIs"><span>API</span></button>
+          <button class="ref-key blue" data-skill="Python"><span>PY</span></button>
 
-          <button class="tech-key dark" data-skill="Linux" aria-label="Linux"><span>Linux</span></button>
-          <button class="tech-key blue" data-skill="Docker" aria-label="Docker"><span>Docker</span></button>
-          <button class="tech-key green" data-skill="Finance Models" aria-label="Finance Models"><span>DCF</span></button>
-          <button class="tech-key orange" data-skill="Quant Finance" aria-label="Quant Finance"><span>Quant</span></button>
-          <button class="tech-key green" data-skill="Risk" aria-label="Risk"><span>Risk</span></button>
-          <button class="tech-key dark" data-skill="Reporting" aria-label="Reporting"><span>Report</span></button>
+          <button class="ref-key dark" data-skill="Linux"><span>Linux</span></button>
+          <button class="ref-key blue" data-skill="Docker"><span>Docker</span></button>
+          <button class="ref-key green" data-skill="Finance Models"><span>DCF</span></button>
+          <button class="ref-key orange" data-skill="Quant Finance"><span>Quant</span></button>
+          <button class="ref-key green" data-skill="Risk"><span>Risk</span></button>
+          <button class="ref-key dark" data-skill="Vercel"><span>Vercel</span></button>
         </div>
+        <p class="stack-hint">Hover or click the keys. Press any key to make the board react.</p>
       </div>
     </section>
 
