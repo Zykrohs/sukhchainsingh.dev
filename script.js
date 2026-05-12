@@ -62,36 +62,16 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.15 });
 document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
 
-const skillCopy = {
-  python: ['Python', 'Repeatable analysis.', 'Python turns one-off finance calculations into workflows that can be checked, rerun and explained.'],
-  pandas: ['Pandas', 'Clean inputs first.', 'Useful for aligning dates, cleaning return series and turning raw data into something reliable.'],
-  numpy: ['NumPy', 'Fast numerical work.', 'Useful when calculations need arrays, compounding, risk metrics or clean mathematical logic.'],
-  sql: ['SQL', 'Sharper data questions.', 'Useful for pulling the right data before the modelling or notebook work starts.'],
-  excel: ['Excel', 'Business-readable models.', 'Still useful for scenario work, sensitivity tables and assumptions that need to be easy to review.'],
-  jupyter: ['Jupyter', 'Analysis with context.', 'Combines code, charts and explanations in one workflow instead of leaving results unexplained.'],
-  git: ['Git', 'Version control.', 'Keeps technical work traceable so changes are not lost or mixed across files.'],
-  github: ['GitHub', 'Project handover.', 'Useful for repo structure, collaboration, documentation and clean submissions.'],
-  matplotlib: ['Matplotlib', 'Charts that explain.', 'Used for wealth indexes, drawdowns, attribution charts and simple visual checks.'],
-  finance: ['Finance', 'Theory into outputs.', 'Portfolio analytics, corporate finance, valuation and markets become more useful when the logic is clear.'],
-  valuation: ['Valuation', 'Drivers matter.', 'Cash flow, growth, margins and discount rates need to connect to the business story.'],
-  risk: ['Risk', 'Downside before upside.', 'Volatility, drawdowns, tracking error and stress testing help test whether results are robust.'],
-  economics: ['Economics', 'Context behind numbers.', 'Macro and market reasoning help frame why assumptions move and why outcomes change.'],
-  api: ['APIs', 'Less manual data work.', 'Automated pulls reduce copy-paste errors and make analysis easier to refresh.'],
-  models: ['Models', 'Assumptions made visible.', 'Good models make the drivers easy to inspect rather than hiding behind the final number.'],
-  strategy: ['Strategy', 'Clear recommendations.', 'Analysis needs to land in a decision, not just a spreadsheet or chart.'],
-  notebooks: ['Notebooks', 'Documented analysis.', 'A good notebook shows what was done, why it was done and how to rerun it.'],
-  reporting: ['Reporting', 'Polished outputs.', 'The end result should be clear enough to present and structured enough to trust.']
-};
-
-const skillLabel = document.getElementById('skillLabel');
-const skillTitle = document.getElementById('skillTitle');
-const skillText = document.getElementById('skillText');
+const skillCaption = document.getElementById('skillCaption');
 const techKeys = Array.from(document.querySelectorAll('.tech-key'));
-const soundMap = [240, 275, 310, 350, 390, 430, 470, 520, 570, 620, 670, 720, 760, 810, 860, 910, 960, 1020];
+const soundMap = [240, 275, 310, 350, 390, 430, 470, 520, 570, 620, 670, 720, 760, 810, 860, 910, 960, 1020, 1070, 1120, 1180, 1240, 1300, 1360];
 
 techKeys.forEach((key, index) => {
   key.addEventListener('click', () => setSkill(key.dataset.skill, index));
-  key.addEventListener('mouseenter', () => playTone(soundMap[index % soundMap.length], 0.035, 'square'));
+  key.addEventListener('mouseenter', () => {
+    setCaption(key.dataset.skill);
+    playTone(soundMap[index % soundMap.length], 0.028, 'square');
+  });
 });
 
 window.addEventListener('keydown', (event) => {
@@ -103,13 +83,15 @@ window.addEventListener('keydown', (event) => {
   setSkill(techKeys[wrapped].dataset.skill, wrapped);
 });
 
+function setCaption(label) {
+  if (!skillCaption || !label) return;
+  skillCaption.textContent = label;
+}
+
 function setSkill(skill, index = 0) {
-  const copy = skillCopy[skill];
-  if (!copy) return;
+  if (!skill) return;
   techKeys.forEach((key) => key.classList.toggle('active', key.dataset.skill === skill));
-  skillLabel.textContent = copy[0];
-  skillTitle.textContent = copy[1];
-  skillText.textContent = copy[2];
+  setCaption(skill);
   playTone(soundMap[index % soundMap.length], 0.055, 'triangle');
 }
 
