@@ -168,3 +168,55 @@ window.addEventListener('keydown', (event) => {
 document.querySelectorAll('a, button').forEach((el) => {
   el.addEventListener('mouseenter', () => playTone(740, .025, 'sine'));
 });
+
+// v16 ASX market desk and richer UI tones
+const asxStatusEl = document.getElementById('asxStatus');
+const asxClockEl = document.getElementById('asxClock');
+const asxCountdownEl = document.getElementById('asxCountdown');
+function sydneyParts(date = new Date()) {
+  const parts = new Intl.DateTimeFormat('en-AU', {
+    timeZone: 'Australia/Sydney', hour12: false, weekday: 'short',
+    hour: '2-digit', minute: '2-digit', second: '2-digit'
+  }).formatToParts(date).reduce((acc, p) => (acc[p.type] = p.value, acc), {});
+  return parts;
+}
+function secondsUntil(from, targetSeconds) {
+  const current = Number(from.hour) * 3600 + Number(from.minute) * 60 + Number(from.second);
+  return targetSeconds - current;
+}
+function fmtDuration(seconds) {
+  seconds = Math.max(0, Math.floor(seconds));
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = seconds % 60;
+  return `${h}h ${m}m ${s}s`;
+}
+function updateAsxDesk() {
+  if (!asxClockEl || !asxStatusEl || !asxCountdownEl) return;
+  const now = new Date();
+  const p = sydneyParts(now);
+  const weekday = !['Sat','Sun'].includes(p.weekday);
+  const current = Number(p.hour) * 3600 + Number(p.minute) * 60 + Number(p.second);
+  const open = 9 * 3600 + 59 * 60 + 45;
+  const close = 16 * 3600;
+  asxClockEl.textContent = `${p.hour}:${p.minute}:${p.second}`;
+  if (weekday && current >= open && current < close) {
+    asxStatusEl.textContent = 'market open';
+    asxCountdownEl.textContent = `${fmtDuration(close - current)} until close`;
+  } else {
+    asxStatusEl.textContent = 'market closed';
+    let until = secondsUntil(p, open);
+    if (!weekday || until <= 0) until += 24 * 3600;
+    asxCountdownEl.textContent = `${fmtDuration(until)} until open`;
+  }
+}
+updateAsxDesk();
+setInterval(updateAsxDesk, 1000);
+
+function playStackChord(index = 0) {
+  if (!soundEnabled) return;
+  [0, 7, 12].forEach((offset, i) => setTimeout(() => playTone(220 + index * 18 + offset * 12, 0.04, i === 1 ? 'triangle' : 'sine'), i * 28));
+}
+document.querySelectorAll('.icon-key').forEach((key, index) => {
+  key.addEventListener('click', () => playStackChord(index));
+});
