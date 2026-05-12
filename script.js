@@ -15,7 +15,6 @@ window.addEventListener('pointerdown', () => {
   if (soundEnabled) playTone(180, .035, 'sine');
 }, { once: true });
 const root = document.documentElement;
-const cursor = document.querySelector('.cursor-dot');
 const themeButton = document.querySelector('.theme-button');
 const menuToggle = document.querySelector('.menu-toggle');
 const menuPanel = document.querySelector('.menu-panel');
@@ -23,12 +22,6 @@ const menuClose = document.querySelector('.menu-close');
 
 const savedTheme = localStorage.getItem('theme') || 'dark';
 root.setAttribute('data-theme', savedTheme);
-
-window.addEventListener('pointermove', (event) => {
-  if (!cursor) return;
-  cursor.style.left = `${event.clientX}px`;
-  cursor.style.top = `${event.clientY}px`;
-});
 
 themeButton?.addEventListener('click', () => {
   const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
@@ -52,6 +45,33 @@ function closeMenu() {
   menuPanel?.classList.remove('open');
   menuPanel?.setAttribute('aria-hidden', 'true');
 }
+
+
+const tiltCards = document.querySelectorAll('.hero-asx-panel, .project-card, .tech-board-icons');
+tiltCards.forEach((card) => {
+  card.addEventListener('pointermove', (event) => {
+    const rect = card.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+    card.style.setProperty('--tilt-x', `${(-y * 5).toFixed(2)}deg`);
+    card.style.setProperty('--tilt-y', `${(x * 6).toFixed(2)}deg`);
+  });
+  card.addEventListener('pointerleave', () => {
+    card.style.setProperty('--tilt-x', '0deg');
+    card.style.setProperty('--tilt-y', '0deg');
+  });
+});
+
+document.querySelectorAll('.button, .icon-key, .index-row button').forEach((el) => {
+  el.addEventListener('click', (event) => {
+    const spark = document.createElement('span');
+    spark.className = 'click-spark';
+    spark.style.left = `${event.clientX}px`;
+    spark.style.top = `${event.clientY}px`;
+    document.body.appendChild(spark);
+    setTimeout(() => spark.remove(), 620);
+  });
+});
 
 let audioCtx;
 function playTone(freq = 420, duration = 0.055, type = 'sine') {
