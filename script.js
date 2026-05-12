@@ -18,6 +18,7 @@ themeButton?.addEventListener('click', () => {
   const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
   root.setAttribute('data-theme', next);
   localStorage.setItem('theme', next);
+  playTone(260, 0.04, 'triangle');
 });
 
 menuToggle?.addEventListener('click', () => openMenu());
@@ -29,10 +30,29 @@ window.addEventListener('keydown', (event) => {
 function openMenu() {
   menuPanel?.classList.add('open');
   menuPanel?.setAttribute('aria-hidden', 'false');
+  playTone(330, 0.04, 'sine');
 }
 function closeMenu() {
   menuPanel?.classList.remove('open');
   menuPanel?.setAttribute('aria-hidden', 'true');
+}
+
+let audioCtx;
+function playTone(freq = 420, duration = 0.055, type = 'sine') {
+  try {
+    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.type = type;
+    osc.frequency.value = freq;
+    gain.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.045, audioCtx.currentTime + 0.006);
+    gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + duration);
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + duration + 0.01);
+  } catch (_) {}
 }
 
 const revealObserver = new IntersectionObserver((entries) => {
@@ -43,47 +63,55 @@ const revealObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
 
 const skillCopy = {
-  python: ['Python', 'Repeatable analysis.', 'I use Python to turn finance calculations into workflows that can be checked, rerun and explained.'],
-  pandas: ['Pandas', 'Clean inputs first.', 'Most analysis is only as good as the dataset behind it. Pandas helps with alignment, cleaning and reliable transformations.'],
-  sql: ['SQL', 'Sharper data questions.', 'SQL is useful for extracting only the data needed before the model or notebook starts.'],
-  excel: ['Excel', 'Clear business models.', 'Excel is still useful for scenario work, sensitivity tables and assumptions that need to be easy to review.'],
-  jupyter: ['Jupyter', 'Analysis with context.', 'Jupyter makes it easier to combine code, charts and explanations in one workflow.'],
-  git: ['GitHub', 'Work that can be traced.', 'Git keeps versions, changes and handover files organised across technical projects.'],
-  models: ['Models', 'Assumptions made visible.', 'I focus on models where the drivers can be checked rather than hidden behind the output.'],
-  charts: ['Charts', 'Readable outputs.', 'A good chart should make the result easier to understand without adding unnecessary noise.'],
-  risk: ['Risk', 'Downside before upside.', 'Volatility, drawdowns, tracking error and stress scenarios help test whether a result is robust.'],
-  valuation: ['Valuation', 'Value tied to drivers.', 'Valuation work is strongest when cash flow, growth, margins and discount rates connect to the business story.']
+  python: ['Python', 'Repeatable analysis.', 'Python turns one-off finance calculations into workflows that can be checked, rerun and explained.'],
+  pandas: ['Pandas', 'Clean inputs first.', 'Useful for aligning dates, cleaning return series and turning raw data into something reliable.'],
+  numpy: ['NumPy', 'Fast numerical work.', 'Useful when calculations need arrays, compounding, risk metrics or clean mathematical logic.'],
+  sql: ['SQL', 'Sharper data questions.', 'Useful for pulling the right data before the modelling or notebook work starts.'],
+  excel: ['Excel', 'Business-readable models.', 'Still useful for scenario work, sensitivity tables and assumptions that need to be easy to review.'],
+  jupyter: ['Jupyter', 'Analysis with context.', 'Combines code, charts and explanations in one workflow instead of leaving results unexplained.'],
+  git: ['Git', 'Version control.', 'Keeps technical work traceable so changes are not lost or mixed across files.'],
+  github: ['GitHub', 'Project handover.', 'Useful for repo structure, collaboration, documentation and clean submissions.'],
+  matplotlib: ['Matplotlib', 'Charts that explain.', 'Used for wealth indexes, drawdowns, attribution charts and simple visual checks.'],
+  finance: ['Finance', 'Theory into outputs.', 'Portfolio analytics, corporate finance, valuation and markets become more useful when the logic is clear.'],
+  valuation: ['Valuation', 'Drivers matter.', 'Cash flow, growth, margins and discount rates need to connect to the business story.'],
+  risk: ['Risk', 'Downside before upside.', 'Volatility, drawdowns, tracking error and stress testing help test whether results are robust.'],
+  economics: ['Economics', 'Context behind numbers.', 'Macro and market reasoning help frame why assumptions move and why outcomes change.'],
+  api: ['APIs', 'Less manual data work.', 'Automated pulls reduce copy-paste errors and make analysis easier to refresh.'],
+  models: ['Models', 'Assumptions made visible.', 'Good models make the drivers easy to inspect rather than hiding behind the final number.'],
+  strategy: ['Strategy', 'Clear recommendations.', 'Analysis needs to land in a decision, not just a spreadsheet or chart.'],
+  notebooks: ['Notebooks', 'Documented analysis.', 'A good notebook shows what was done, why it was done and how to rerun it.'],
+  reporting: ['Reporting', 'Polished outputs.', 'The end result should be clear enough to present and structured enough to trust.']
 };
 
 const skillLabel = document.getElementById('skillLabel');
 const skillTitle = document.getElementById('skillTitle');
 const skillText = document.getElementById('skillText');
-const stackKeys = Array.from(document.querySelectorAll('.stack-key'));
+const techKeys = Array.from(document.querySelectorAll('.tech-key'));
+const soundMap = [240, 275, 310, 350, 390, 430, 470, 520, 570, 620, 670, 720, 760, 810, 860, 910, 960, 1020];
 
-stackKeys.forEach((key) => {
-  key.addEventListener('click', () => setSkill(key.dataset.skill));
+techKeys.forEach((key, index) => {
+  key.addEventListener('click', () => setSkill(key.dataset.skill, index));
+  key.addEventListener('mouseenter', () => playTone(soundMap[index % soundMap.length], 0.035, 'square'));
 });
-function setSkill(skill) {
+
+window.addEventListener('keydown', (event) => {
+  const isTyping = ['INPUT', 'TEXTAREA'].includes(document.activeElement?.tagName);
+  if (isTyping || event.metaKey || event.ctrlKey || event.altKey) return;
+  const current = techKeys.findIndex((key) => key.classList.contains('active'));
+  const next = event.key === 'ArrowLeft' ? current - 1 : current + 1;
+  const wrapped = (next + techKeys.length) % techKeys.length;
+  setSkill(techKeys[wrapped].dataset.skill, wrapped);
+});
+
+function setSkill(skill, index = 0) {
   const copy = skillCopy[skill];
   if (!copy) return;
-  stackKeys.forEach((key) => key.classList.toggle('active', key.dataset.skill === skill));
+  techKeys.forEach((key) => key.classList.toggle('active', key.dataset.skill === skill));
   skillLabel.textContent = copy[0];
   skillTitle.textContent = copy[1];
   skillText.textContent = copy[2];
+  playTone(soundMap[index % soundMap.length], 0.055, 'triangle');
 }
-
-const aboutCopy = {
-  analysis: 'I prefer work where assumptions are visible, calculations are reproducible and the final result is simple to explain.',
-  markets: 'I am interested in how market data, pricing and risk connect to decision-making.',
-  delivery: 'The final output should be useful to someone else, not just technically correct on my own machine.'
-};
-document.querySelectorAll('.about-pill').forEach((pill) => {
-  pill.addEventListener('click', () => {
-    document.querySelectorAll('.about-pill').forEach((item) => item.classList.remove('active'));
-    pill.classList.add('active');
-    document.getElementById('aboutOutput').textContent = aboutCopy[pill.dataset.about];
-  });
-});
 
 const canvas = document.getElementById('starfield');
 const ctx = canvas.getContext('2d');
@@ -91,12 +119,12 @@ let stars = [];
 function resizeCanvas() {
   canvas.width = window.innerWidth * devicePixelRatio;
   canvas.height = window.innerHeight * devicePixelRatio;
-  stars = Array.from({ length: Math.min(150, Math.floor(window.innerWidth / 9)) }, () => ({
+  stars = Array.from({ length: Math.min(155, Math.floor(window.innerWidth / 9)) }, () => ({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
-    r: Math.random() * 1.5 + 0.25,
-    a: Math.random() * 0.75 + 0.15,
-    v: Math.random() * 0.25 + 0.05
+    r: Math.random() * 1.4 + 0.22,
+    a: Math.random() * 0.72 + 0.14,
+    v: Math.random() * 0.22 + 0.04
   }));
 }
 function drawStars() {

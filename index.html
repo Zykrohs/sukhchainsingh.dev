@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sukhchain Singh | Developer Portfolio</title>
+  <title>Sukhchain Singh | Finance & Software Portfolio</title>
   <meta name="description" content="Portfolio of Sukhchain Singh, a University of Queensland Advanced Finance and Economics student building finance, data and software projects." />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23080a0f'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='Arial, sans-serif' font-size='24' font-weight='800' fill='%23ffffff'%3ESS%3C/text%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23090a0d'/%3E%3Ctext x='32' y='40' text-anchor='middle' font-family='Arial, sans-serif' font-size='24' font-weight='900' fill='%23ff6a1a'%3ESS%3C/text%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
@@ -15,9 +15,7 @@
   <header class="site-header" id="top">
     <a class="header-name" href="#home">Sukhchain Singh</a>
     <div class="header-right">
-      <button class="theme-button" type="button" aria-label="Toggle theme">
-        <span class="theme-icon">◐</span>
-      </button>
+      <button class="theme-button" type="button" aria-label="Toggle theme"><span>◐</span></button>
       <button class="menu-toggle" type="button" aria-label="Open menu">
         <span class="menu-text">Menu</span>
         <span class="burger"><i></i><i></i></span>
@@ -50,15 +48,15 @@
           <h1>Sukhchain<br>Singh</h1>
           <p class="role">Finance, data and software projects.</p>
           <div class="hero-actions">
-            <a class="button primary" href="#contact">Contact</a>
-            <a class="icon-button" href="https://www.instagram.com/zykrohs/" target="_blank" rel="noreferrer" aria-label="Instagram">IG</a>
-            <a class="icon-button" href="https://github.com/Zykrohs" target="_blank" rel="noreferrer" aria-label="GitHub">GH</a>
-            <a class="icon-button" href="https://au.linkedin.com/in/sukhchain-s" target="_blank" rel="noreferrer" aria-label="LinkedIn">in</a>
+            <a class="button primary" href="#projects">View Work</a>
+            <a class="button ghost" href="https://www.instagram.com/zykrohs/" target="_blank" rel="noreferrer">Instagram</a>
+            <a class="button ghost" href="https://github.com/Zykrohs" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="button ghost" href="https://au.linkedin.com/in/sukhchain-s" target="_blank" rel="noreferrer">LinkedIn</a>
           </div>
         </div>
 
         <div class="hero-object reveal delay-1" aria-label="Floating technical keyboard illustration">
-          <div class="floating-board">
+          <div class="floating-board small-board">
             <span class="key orange">PY</span>
             <span class="key blue">SQL</span>
             <span class="key lime">RISK</span>
@@ -76,28 +74,37 @@
     <section class="section skills-section" id="skills">
       <div class="section-heading center reveal">
         <h2>Tech Stack</h2>
-        <p>Tools I use for analysis, modelling and building usable outputs.</p>
+        <p>I am not limited to just these. Press a key or click the board.</p>
       </div>
 
-      <div class="stack-stage reveal delay-1">
-        <div class="stack-board" aria-label="Interactive tech stack board">
-          <button class="stack-key active" data-skill="python">Python</button>
-          <button class="stack-key" data-skill="pandas">Pandas</button>
-          <button class="stack-key" data-skill="sql">SQL</button>
-          <button class="stack-key" data-skill="excel">Excel</button>
-          <button class="stack-key" data-skill="jupyter">Jupyter</button>
-          <button class="stack-key" data-skill="git">GitHub</button>
-          <button class="stack-key" data-skill="models">Models</button>
-          <button class="stack-key" data-skill="charts">Charts</button>
-          <button class="stack-key" data-skill="risk">Risk</button>
-          <button class="stack-key" data-skill="valuation">Valuation</button>
+      <div class="stack-showcase reveal delay-1">
+        <div class="big-tech-board" aria-label="Interactive tech stack keyboard">
+          <button class="tech-key orange active" data-skill="python">PY</button>
+          <button class="tech-key blue" data-skill="pandas">PD</button>
+          <button class="tech-key red" data-skill="numpy">NP</button>
+          <button class="tech-key purple" data-skill="sql">SQL</button>
+          <button class="tech-key cyan" data-skill="jupyter">JP</button>
+          <button class="tech-key green" data-skill="excel">XL</button>
+          <button class="tech-key dark" data-skill="git">Git</button>
+          <button class="tech-key dark" data-skill="github">GH</button>
+          <button class="tech-key cyan" data-skill="matplotlib">Plot</button>
+          <button class="tech-key green" data-skill="finance">FIN</button>
+          <button class="tech-key red" data-skill="valuation">DCF</button>
+          <button class="tech-key yellow" data-skill="risk">RISK</button>
+          <button class="tech-key dark" data-skill="economics">ECO</button>
+          <button class="tech-key blue" data-skill="api">API</button>
+          <button class="tech-key green" data-skill="models">MOD</button>
+          <button class="tech-key orange" data-skill="strategy">STR</button>
+          <button class="tech-key dark" data-skill="notebooks">NB</button>
+          <button class="tech-key cyan" data-skill="reporting">REP</button>
         </div>
+        <div class="sound-pill"><span></span> sound on interaction</div>
+      </div>
 
-        <div class="stack-readout">
-          <p id="skillLabel">Python</p>
-          <h3 id="skillTitle">Repeatable analysis.</h3>
-          <span id="skillText">I use Python to turn finance calculations into workflows that can be checked, rerun and explained.</span>
-        </div>
+      <div class="stack-readout reveal delay-2">
+        <p id="skillLabel">Python</p>
+        <h3 id="skillTitle">Repeatable analysis.</h3>
+        <span id="skillText">I use Python to turn finance calculations into workflows that can be checked, rerun and explained.</span>
       </div>
     </section>
 
@@ -109,62 +116,58 @@
         </div>
         <div class="about-body">
           <p>
-            I study Advanced Finance and Economics at The University of Queensland. My work sits around finance, data and practical software, especially where clear modelling and clean outputs matter.
+            I study Advanced Finance and Economics at The University of Queensland. My interests sit across portfolio analytics, valuation, market data, risk and business strategy.
           </p>
           <p>
-            I work across Python, Excel, Jupyter and GitHub to build analysis that is easy to review, present and improve. I am interested in portfolio analytics, valuation, market data, risk and business strategy.
+            I use Python, Excel, Jupyter and GitHub to build analysis that is easy to review, present and improve. I care about clear assumptions, clean outputs and work that can be reproduced.
           </p>
         </div>
-        <div class="about-points">
-          <button class="about-pill active" data-about="analysis">Analysis</button>
-          <button class="about-pill" data-about="markets">Markets</button>
-          <button class="about-pill" data-about="delivery">Delivery</button>
-        </div>
-        <p class="about-output" id="aboutOutput">I prefer work where assumptions are visible, calculations are reproducible and the final result is simple to explain.</p>
       </div>
     </section>
 
     <section class="section projects-section" id="projects">
       <div class="projects-header reveal">
-        <p class="label">Latest Projects</p>
-        <h2>A selection of my finance and software work.</h2>
+        <div>
+          <p class="label">Latest Projects</p>
+          <h2>Selected finance and software work.</h2>
+        </div>
         <a class="button ghost" href="https://github.com/Zykrohs" target="_blank" rel="noreferrer">View GitHub →</a>
       </div>
 
       <div class="projects-grid">
-        <article class="project-card reveal" data-project="portfolio">
+        <article class="project-card reveal">
           <div class="project-art art-line"></div>
-          <p>Python</p>
+          <p>Python / Portfolio Analytics</p>
           <h3>Multi-Asset Portfolio Analytics</h3>
           <span>Performance metrics, benchmark comparison, drawdowns and portfolio charts.</span>
         </article>
-        <article class="project-card reveal" data-project="attribution">
+        <article class="project-card reveal">
           <div class="project-art art-bars"></div>
-          <p>Attribution</p>
+          <p>Attribution / Active Return</p>
           <h3>Performance Attribution Engine</h3>
           <span>Breaks active return into allocation and selection effects across asset sleeves.</span>
         </article>
-        <article class="project-card reveal" data-project="marketdata">
+        <article class="project-card reveal">
           <div class="project-art art-dots"></div>
-          <p>Data</p>
+          <p>Data / Automation</p>
           <h3>Market Data Toolkit</h3>
           <span>Downloads, cleans and prepares market data for return and risk analysis.</span>
         </article>
-        <article class="project-card reveal" data-project="risk">
+        <article class="project-card reveal">
           <div class="project-art art-risk"></div>
-          <p>Risk</p>
+          <p>Risk / Derivatives</p>
           <h3>Risk and Derivatives Desk</h3>
           <span>Yield curves, scenarios, exposure checks and derivative-style analysis.</span>
         </article>
-        <article class="project-card reveal" data-project="model">
+        <article class="project-card reveal">
           <div class="project-art art-grid"></div>
-          <p>Modelling</p>
+          <p>Financial Modelling</p>
           <h3>Scenario Modelling Dashboard</h3>
           <span>Forecasts, sensitivity tables, break-even logic and business assumptions.</span>
         </article>
-        <article class="project-card reveal" data-project="reporting">
+        <article class="project-card reveal">
           <div class="project-art art-report"></div>
-          <p>Systems</p>
+          <p>Reporting / Jupyter</p>
           <h3>Research Notebook System</h3>
           <span>Jupyter notebooks, Git workflows and report-ready analytical outputs.</span>
         </article>
@@ -183,18 +186,9 @@
           </div>
         </div>
         <form action="https://formspree.io/f/xgoddqlp" method="POST">
-          <label>
-            Name
-            <input name="name" type="text" placeholder="Your name" required />
-          </label>
-          <label>
-            Contact
-            <input name="contact" type="text" placeholder="Email, Instagram or LinkedIn" required />
-          </label>
-          <label>
-            Message
-            <textarea name="message" placeholder="Tell me what you are working on" required></textarea>
-          </label>
+          <label>Name<input name="name" type="text" placeholder="Your name" required /></label>
+          <label>Contact<input name="contact" type="text" placeholder="Email, Instagram or LinkedIn" required /></label>
+          <label>Message<textarea name="message" placeholder="Tell me what you are working on" required></textarea></label>
           <button class="button primary" type="submit">Send message</button>
         </form>
       </div>
