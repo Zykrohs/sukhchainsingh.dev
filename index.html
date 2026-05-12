@@ -32,18 +32,39 @@
   </header>
 
   <aside class="menu-panel" aria-hidden="true">
-    <div class="menu-panel-inner">
-      <button class="menu-close" type="button">Close</button>
-      <nav>
-        <a href="#skills">Tech Stack</a>
-        <a href="#about">About Me</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
+    <div class="menu-backdrop" data-menu-close></div>
+    <div class="menu-panel-inner" role="dialog" aria-modal="true" aria-label="Site menu">
+      <div class="menu-topbar">
+        <a class="menu-brand" href="#home" data-menu-close>SS<span>Portfolio</span></a>
+        <button class="menu-close" type="button" aria-label="Close menu">
+          <span>Close</span>
+          <i aria-hidden="true"></i>
+        </button>
+      </div>
+
+      <nav class="menu-nav" aria-label="Primary navigation">
+        <a href="#skills" style="--i:1"><span>01</span><b>Tech Stack</b><em>Tools I use</em></a>
+        <a href="#about" style="--i:2"><span>02</span><b>About Me</b><em>Background and focus</em></a>
+        <a href="#projects" style="--i:3"><span>03</span><b>Projects</b><em>Selected work</em></a>
+        <a href="#contact" style="--i:4"><span>04</span><b>Contact</b><em>Connect with me</em></a>
       </nav>
-      <div class="menu-socials">
-        <a href="https://www.instagram.com/zykrohs/" target="_blank" rel="noreferrer">Instagram</a>
-        <a href="https://github.com/Zykrohs" target="_blank" rel="noreferrer">GitHub</a>
-        <a href="https://au.linkedin.com/in/sukhchain-s" target="_blank" rel="noreferrer">LinkedIn</a>
+
+      <div class="menu-footer">
+        <p>Finance, data and software projects.</p>
+        <div class="menu-socials" aria-label="Social links">
+          <a href="https://www.instagram.com/zykrohs/" target="_blank" rel="noreferrer" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1.2"></circle></svg>
+            <span>Instagram</span>
+          </a>
+          <a href="https://github.com/Zykrohs" target="_blank" rel="noreferrer" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.86 8.37 6.83 9.73.5.1.68-.22.68-.49v-1.73c-2.78.62-3.37-1.37-3.37-1.37-.45-1.19-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.9 1.57 2.34 1.12 2.91.85.09-.67.35-1.12.63-1.38-2.22-.26-4.55-1.14-4.55-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.27 2.75 1.05A9.28 9.28 0 0 1 12 6.99c.85 0 1.7.12 2.5.35 1.9-1.32 2.74-1.05 2.74-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9v2.79c0 .27.18.59.69.49A10.06 10.06 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"></path></svg>
+            <span>GitHub</span>
+          </a>
+          <a href="https://au.linkedin.com/in/sukhchain-s" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5.2 8.8h3.1v10H5.2v-10Zm1.55-4.7a1.8 1.8 0 1 1 0 3.6 1.8 1.8 0 0 1 0-3.6ZM10.4 8.8h3v1.36h.04c.42-.8 1.45-1.64 3-1.64 3.2 0 3.8 2.1 3.8 4.86v5.42h-3.12v-4.8c0-1.15-.02-2.62-1.6-2.62-1.6 0-1.85 1.25-1.85 2.54v4.88H10.4v-10Z"></path></svg>
+            <span>LinkedIn</span>
+          </a>
+        </div>
       </div>
     </div>
   </aside>

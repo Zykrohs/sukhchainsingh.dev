@@ -32,17 +32,19 @@ themeButton?.addEventListener('click', () => {
 
 menuToggle?.addEventListener('click', () => openMenu());
 menuClose?.addEventListener('click', () => closeMenu());
-menuPanel?.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
+menuPanel?.querySelectorAll('a, [data-menu-close]').forEach((link) => link.addEventListener('click', closeMenu));
 window.addEventListener('keydown', (event) => {
   if (event.key === 'Escape') closeMenu();
 });
 function openMenu() {
   menuPanel?.classList.add('open');
+  document.body.classList.add('menu-open');
   menuPanel?.setAttribute('aria-hidden', 'false');
   playTone(330, 0.04, 'sine');
 }
 function closeMenu() {
   menuPanel?.classList.remove('open');
+  document.body.classList.remove('menu-open');
   menuPanel?.setAttribute('aria-hidden', 'true');
 }
 
