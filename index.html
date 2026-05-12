@@ -57,25 +57,57 @@
           <h1>Sukhchain<br>Singh</h1>
           <p class="role">Finance, data and software projects.</p>
           <div class="hero-actions">
-            <a class="button primary" href="#projects">View Work</a>
-            <a class="button ghost" href="https://www.instagram.com/zykrohs/" target="_blank" rel="noreferrer">Instagram</a>
-            <a class="button ghost" href="https://github.com/Zykrohs" target="_blank" rel="noreferrer">GitHub</a>
-            <a class="button ghost" href="https://au.linkedin.com/in/sukhchain-s" target="_blank" rel="noreferrer">LinkedIn</a>
-          </div>
-          <div class="hero-market-card" aria-live="polite">
-            <div>
-              <span class="market-kicker">ASX desk</span>
-              <strong id="asxStatus">Checking market</strong>
-            </div>
-            <div class="market-clock">
-              <span id="asxClock">--:--:--</span>
-              <small id="asxCountdown">Sydney time</small>
-            </div>
+            <a class="button primary arrow" href="#projects">View Work <span>→</span></a>
+            <a class="button ghost social-btn" href="https://www.instagram.com/zykrohs/" target="_blank" rel="noreferrer"><span class="social-icon">◎</span>Instagram</a>
+            <a class="button ghost social-btn" href="https://github.com/Zykrohs" target="_blank" rel="noreferrer"><span class="social-icon">◖</span>GitHub</a>
+            <a class="button ghost social-btn" href="https://au.linkedin.com/in/sukhchain-s" target="_blank" rel="noreferrer"><span class="social-icon">in</span>LinkedIn</a>
           </div>
         </div>
 
+        <aside class="hero-asx-panel reveal delay-1" aria-live="polite">
+          <div class="asx-panel-top">
+            <span class="market-kicker">ASX desk</span>
+            <span class="status-pill"><i id="asxDot"></i><b id="asxStatus">Checking market</b></span>
+          </div>
+          <div class="market-clock large-clock">
+            <span id="asxClock">--:--:--</span>
+            <div class="clock-labels"><small>hours</small><small>minutes</small><small>seconds</small></div>
+          </div>
+          <small class="countdown-line" id="asxCountdown">Sydney time</small>
+          <svg class="asx-spark" viewBox="0 0 360 120" aria-hidden="true">
+            <defs>
+              <linearGradient id="sparkFill" x1="0" x2="0" y1="0" y2="1">
+                <stop offset="0%" stop-color="#ff6a1a" stop-opacity="0.45" />
+                <stop offset="100%" stop-color="#ff6a1a" stop-opacity="0" />
+              </linearGradient>
+            </defs>
+            <path id="sparkArea" d="" fill="url(#sparkFill)"></path>
+            <path id="sparkLine" d="" fill="none" stroke="#ff6a1a" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+            <circle id="sparkDot" r="5" fill="#ff6a1a"></circle>
+          </svg>
+          <div class="index-row">
+            <button type="button" data-index="ASX 200"><strong>ASX 200</strong><span>7,614.20</span><em>-0.42%</em></button>
+            <button type="button" data-index="S&P/ASX 300"><strong>S&amp;P/ASX 300</strong><span>7,484.10</span><em>-0.38%</em></button>
+            <button type="button" data-index="All Ordinaries"><strong>All Ordinaries</strong><span>7,821.50</span><em>-0.35%</em></button>
+          </div>
+        </aside>
       </div>
-      <a class="scroll-cue" href="#skills" aria-label="Scroll to skills"><span></span></a>
+
+      <div class="hero-info-bar reveal delay-2">
+        <div>
+          <p class="label">Current focus</p>
+          <div class="focus-pills">
+            <span>Building data tools</span>
+            <span>Portfolio analytics</span>
+            <span>Financial modelling</span>
+          </div>
+        </div>
+        <div class="open-to">
+          <p class="label">Open to</p>
+          <span>Internships</span><i></i><span>Graduate Roles</span><i></i><span>Collaborations</span>
+        </div>
+      </div>
+      <a class="scroll-cue vertical-cue" href="#skills" aria-label="Scroll to skills"><span></span><em>Scroll</em></a>
     </section>
 
     <section class="section skills-section" id="skills">

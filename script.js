@@ -220,3 +220,52 @@ function playStackChord(index = 0) {
 document.querySelectorAll('.icon-key').forEach((key, index) => {
   key.addEventListener('click', () => playStackChord(index));
 });
+
+// v17 interactive ASX sparkline + index selector
+const asxDot = document.getElementById('asxDot');
+const sparkLine = document.getElementById('sparkLine');
+const sparkArea = document.getElementById('sparkArea');
+const sparkDot = document.getElementById('sparkDot');
+const indexButtons = Array.from(document.querySelectorAll('.index-row button'));
+let sparkSeed = [62,48,56,68,58,51,46,45,46,46,46,58,75,73,59,50,45,42,48,38,55,53,52,39,45,38,68,92,101,86,88,98,113];
+function buildSpark(values = sparkSeed) {
+  if (!sparkLine || !sparkArea || !sparkDot) return;
+  const w = 360, h = 120, pad = 8;
+  const min = Math.min(...values), max = Math.max(...values);
+  const pts = values.map((v, i) => {
+    const x = pad + (i / (values.length - 1)) * (w - pad * 2);
+    const y = h - pad - ((v - min) / Math.max(1, max - min)) * (h - pad * 2);
+    return [x, y];
+  });
+  const d = pts.map((p, i) => `${i ? 'L' : 'M'}${p[0].toFixed(1)} ${p[1].toFixed(1)}`).join(' ');
+  sparkLine.setAttribute('d', d);
+  sparkArea.setAttribute('d', `${d} L${w - pad} ${h - pad} L${pad} ${h - pad} Z`);
+  const last = pts[pts.length - 1];
+  sparkDot.setAttribute('cx', last[0]);
+  sparkDot.setAttribute('cy', last[1]);
+}
+buildSpark();
+function mutateSpark(base = 0) {
+  sparkSeed = sparkSeed.map((v, i) => Math.max(18, Math.min(115, v + Math.sin(i + base) * 6 + (Math.random() - .5) * 8)));
+  buildSpark(sparkSeed);
+}
+indexButtons.forEach((btn, index) => {
+  btn.addEventListener('mouseenter', () => {
+    indexButtons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    mutateSpark(index * 3);
+    playTone(520 + index * 90, .04, 'triangle');
+  });
+  btn.addEventListener('click', () => {
+    btn.animate([{transform:'translateY(0)'},{transform:'translateY(-5px)'},{transform:'translateY(0)'}], {duration:240, easing:'ease-out'});
+    playStackChord(index + 4);
+  });
+});
+
+const oldUpdateAsxDesk = updateAsxDesk;
+updateAsxDesk = function(){
+  oldUpdateAsxDesk();
+  const open = asxStatusEl?.textContent?.includes('open');
+  asxDot?.classList.toggle('open', !!open);
+};
+updateAsxDesk();
