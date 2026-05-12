@@ -80,7 +80,7 @@ const revealObserver = new IntersectionObserver((entries) => {
 document.querySelectorAll('.reveal').forEach((element) => revealObserver.observe(element));
 
 const skillCaption = document.getElementById('skillCaption');
-const techKeys = Array.from(document.querySelectorAll('.ref-key, .tech-key'));
+const techKeys = Array.from(document.querySelectorAll('.icon-key, .ref-key, .tech-key'));
 const soundMap = [240, 275, 310, 350, 390, 430, 470, 520, 570, 620, 670, 720, 760, 810, 860, 910, 960, 1020, 1070, 1120, 1180, 1240, 1300, 1360];
 
 techKeys.forEach((key, index) => {
@@ -143,7 +143,7 @@ resizeCanvas();
 drawStars();
 
 
-const board = document.querySelector('.tech-board-ref');
+const board = document.querySelector('.tech-board-icons') || document.querySelector('.tech-board-ref');
 function popBoard(){
   if (!board) return;
   board.classList.remove('pop');
@@ -151,12 +151,12 @@ function popBoard(){
   board.classList.add('pop');
   setTimeout(()=>board.classList.remove('pop'), 460);
 }
-document.querySelectorAll('.ref-key').forEach((key, index) => {
+document.querySelectorAll('.icon-key, .ref-key').forEach((key, index) => {
   key.addEventListener('click', () => popBoard());
   key.addEventListener('mouseenter', () => {
     key.animate([
       { transform: getComputedStyle(key).transform },
-      { transform: 'translateZ(48px) translateY(-9px) rotateZ(-1.4deg)' },
+      { transform: 'translateZ(62px) translateY(-12px) rotateZ(-1.4deg)' },
       { transform: getComputedStyle(key).transform }
     ], { duration: 240, easing: 'ease-out' });
   });
