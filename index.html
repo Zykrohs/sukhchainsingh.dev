@@ -31,6 +31,11 @@
     </div>
   </header>
 
+  <div class="market-ticker" aria-label="Live market ticker">
+    <span class="label-tag">LIVE • MARKETS</span>
+    <div class="ticker-track" id="tickerTrack"></div>
+  </div>
+
   <aside class="menu-panel" aria-hidden="true">
     <div class="menu-backdrop" data-menu-close></div>
     <div class="menu-panel-inner" role="dialog" aria-modal="true" aria-label="Site menu">
@@ -245,6 +250,69 @@
           <div><span>02</span><strong>Data</strong><em>Python, Excel, Jupyter and reporting</em></div>
           <div><span>03</span><strong>Software</strong><em>Reusable workflows and clean project structure</em></div>
         </div>
+
+        <div class="terminal-card reveal delay-1" aria-label="Live terminal preview">
+          <div class="term-bar">
+            <div class="term-dots"><i></i><i></i><i></i></div>
+            <span class="term-title">~ sukhchain / quant-desk</span>
+          </div>
+          <div class="term-body" id="termBody"></div>
+        </div>
+
+        <div class="quant-lab reveal delay-2" aria-label="Mini interactive finance tools">
+          <article class="lab-card">
+            <div class="lab-head">
+              <h3>Beat the Market</h3>
+              <span class="lab-tag">25s game</span>
+            </div>
+            <p class="muted">Click rising tickers, dodge the falling ones.</p>
+            <div class="btm-stage" id="btmStage">
+              <div class="btm-hud">
+                <span class="stat"><span>score</span><b id="btmScore">0</b></span>
+                <span class="stat"><span>time</span><b id="btmTime">25</b>s</span>
+              </div>
+            </div>
+            <div class="btm-controls">
+              <span class="btm-msg" id="btmMsg">Press start to trade.</span>
+              <button class="btm-btn" id="btmStart" type="button">Start</button>
+            </div>
+          </article>
+
+          <article class="lab-card">
+            <div class="lab-head">
+              <h3>Portfolio Allocator</h3>
+              <span class="lab-tag">risk score</span>
+            </div>
+            <p class="muted">Rebalance stocks, bonds and cash. Risk updates live.</p>
+            <div class="alloc-row">
+              <div class="alloc-line">
+                <label>Stocks</label>
+                <input id="allocStocks" type="range" min="0" max="100" value="60" />
+                <span class="val" id="allocStocksVal">60%</span>
+              </div>
+              <div class="alloc-line">
+                <label>Bonds</label>
+                <input id="allocBonds" type="range" min="0" max="100" value="30" />
+                <span class="val" id="allocBondsVal">30%</span>
+              </div>
+              <div class="alloc-line">
+                <label>Cash</label>
+                <div style="display:flex;align-items:center;gap:8px;color:var(--muted);font-family:var(--font-mono);font-size:11px;letter-spacing:.08em">auto-balanced</div>
+                <span class="val" id="allocCashVal">10%</span>
+              </div>
+            </div>
+            <div class="alloc-bar">
+              <i class="seg-stocks"></i><i class="seg-bonds"></i><i class="seg-cash"></i>
+            </div>
+            <div class="alloc-risk">
+              <div>
+                <p class="risk-label">Risk profile</p>
+                <strong id="riskLevel" style="font-family:var(--font-mono);font-size:13px">Growth</strong>
+              </div>
+              <span class="risk-score" id="riskScore">66</span>
+            </div>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -322,6 +390,14 @@
     <p>© 2026 Sukhchain Singh. All rights reserved.</p>
     <a href="#home">Back to top ↑</a>
   </footer>
+
+  <div class="easter-egg" id="easterEgg" aria-hidden="true">
+    <div class="ee-box">
+      <h3>You found the alpha.</h3>
+      <p>Five clicks. Most visitors never find this. Thanks for the curiosity, that mindset is exactly what makes a good quant.</p>
+      <button class="ee-close" type="button">Close</button>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>
