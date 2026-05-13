@@ -2050,3 +2050,110 @@ html[data-theme="light"] footer {
   white-space: nowrap;
   opacity: 0;
 }
+
+
+/* ---------- User requested fixes: clean name header, light menu, Next.js icon ---------- */
+.header-name {
+  gap: 0;
+  padding: 0 0 5px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  color: #f8fafc;
+  font-size: 17px;
+  font-weight: 900;
+  letter-spacing: .01em;
+  text-shadow: 0 0 22px rgba(248, 250, 252, .28);
+}
+.header-name::before,
+.header-name::after { content: none !important; display: none !important; }
+.header-name:hover {
+  color: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: none;
+}
+.header-name {
+  background-image: linear-gradient(90deg, rgba(255,255,255,.95), rgba(255,255,255,.95));
+  background-repeat: no-repeat;
+  background-size: 100% 2px;
+  background-position: 0 100%;
+}
+html[data-theme="light"] .header-name {
+  color: #0d1220 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  text-shadow: none;
+  background-image: linear-gradient(90deg, #0d1220, #0d1220) !important;
+  background-repeat: no-repeat !important;
+  background-size: 100% 2px !important;
+  background-position: 0 100% !important;
+}
+html[data-theme="light"] .header-name:hover { color: #111827 !important; }
+
+html[data-theme="light"] .menu-panel-inner {
+  background:
+    radial-gradient(520px 380px at 0% 0%, rgba(255,106,26,.11), transparent 62%),
+    radial-gradient(520px 380px at 100% 10%, rgba(34,211,238,.10), transparent 64%),
+    linear-gradient(180deg, rgba(255,255,255,.98), rgba(245,248,253,.97));
+  color: #0d1220;
+  border-left: 1px solid rgba(15,23,42,.10);
+  box-shadow: -34px 0 80px rgba(15, 23, 42, .16);
+}
+html[data-theme="light"] .menu-backdrop {
+  background: rgba(241, 245, 249, .60);
+  backdrop-filter: blur(10px);
+}
+html[data-theme="light"] .menu-topbar,
+html[data-theme="light"] .menu-footer { border-color: rgba(15,23,42,.09); }
+html[data-theme="light"] .menu-brand {
+  color: #0d1220;
+  -webkit-text-fill-color: #0d1220;
+  background: none;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+  text-shadow: none;
+}
+.menu-brand span { display: none !important; }
+html[data-theme="light"] .menu-close {
+  color: #0d1220;
+  background: rgba(255,255,255,.70);
+  border-color: rgba(15,23,42,.12);
+}
+html[data-theme="light"] .menu-close:hover {
+  color: var(--accent);
+  border-color: rgba(255,106,26,.38);
+}
+html[data-theme="light"] .menu-nav a:hover {
+  background: rgba(255,255,255,.72);
+  border-color: rgba(15,23,42,.09);
+  box-shadow: 0 14px 30px rgba(15,23,42,.06);
+}
+html[data-theme="light"] .menu-nav a b { color: #111827; }
+html[data-theme="light"] .menu-nav a em,
+html[data-theme="light"] .menu-footer p { color: #647084; }
+html[data-theme="light"] .menu-socials a {
+  color: #334155;
+  background: rgba(255,255,255,.70);
+  border-color: rgba(15,23,42,.10);
+}
+html[data-theme="light"] .menu-socials a:hover { color: var(--accent); border-color: rgba(255,106,26,.38); }
+
+.next-logo-svg {
+  width: 38px;
+  height: 38px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.brand-next { color: #111827; }
+html[data-theme="dark"] .brand-next { color: #f8fafc; }
+html[data-theme="light"] .brand-next { color: #111827; }
+.brand-next .next-logo-svg { filter: drop-shadow(0 8px 12px rgba(15,23,42,.14)); }
+.icon-key:hover .next-logo-svg { transform: scale(1.1); }
