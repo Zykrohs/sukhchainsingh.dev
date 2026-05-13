@@ -30,6 +30,8 @@ function playTone(freq = 420, duration = 0.05, type = 'sine') {
   } catch (_) {}
 }
 const soundToggle = document.querySelector('.sound-toggle');
+soundToggle?.classList.add('off');
+if (soundToggle) soundToggle.title = 'Sound off';
 soundToggle?.addEventListener('click', () => {
   soundEnabled = !soundEnabled;
   soundToggle.classList.toggle('off', !soundEnabled);
@@ -124,16 +126,31 @@ document.querySelectorAll('.project-card, .about-metrics > div').forEach(card =>
 });
 
 /* ---------- Click sparks ---------- */
-document.querySelectorAll('.button, .icon-key, .index-row button, .btm-btn').forEach(el => {
-  el.addEventListener('click', e => {
-    const spark = document.createElement('span');
-    spark.className = 'click-spark';
-    spark.style.left = `${e.clientX}px`;
-    spark.style.top  = `${e.clientY}px`;
-    document.body.appendChild(spark);
-    setTimeout(() => spark.remove(), 620);
-  });
+function emitClickSpark(x, y) {
+  const spark = document.createElement('span');
+  spark.className = 'click-spark';
+  spark.style.left = `${x}px`;
+  spark.style.top  = `${y}px`;
+  document.body.appendChild(spark);
+  setTimeout(() => spark.remove(), 620);
+}
+
+document.querySelectorAll('.button, .icon-key, .index-row button, .btm-btn, .project-card, .lab-card, .menu-nav a, .contact-links a').forEach(el => {
+  el.addEventListener('click', e => emitClickSpark(e.clientX, e.clientY));
 });
+
+function bindSoftHover(selector, base = 430) {
+  document.querySelectorAll(selector).forEach((el, i) => {
+    let ready = true;
+    el.addEventListener('mouseenter', () => {
+      if (!ready) return;
+      ready = false;
+      playTone(base + (i % 6) * 22, 0.028, 'sine');
+      setTimeout(() => { ready = true; }, 180);
+    });
+  });
+}
+bindSoftHover('.project-card, .lab-card, .button.ghost, .menu-nav a', 360);
 
 /* ---------- Skill board ---------- */
 const skillCaption = document.getElementById('skillCaption');
@@ -524,9 +541,47 @@ function updateAllocation() {
     if (riskLevelEl) { riskLevelEl.textContent = level; riskLevelEl.style.color = color; }
   }
 }
-allocStocks?.addEventListener('input', updateAllocation);
-allocBonds?.addEventListener('input',  updateAllocation);
+allocStocks?.addEventListener('input', () => { updateAllocation(); playTone(260, 0.025, 'triangle'); });
+allocBonds?.addEventListener('input',  () => { updateAllocation(); playTone(300, 0.025, 'triangle'); });
 updateAllocation();
+
+
+/* =============================================================
+   CONTACT FORM - in-page success popup, no external redirect
+   ============================================================= */
+const contactForm = document.getElementById('contactForm');
+const formStatus = document.getElementById('formStatus');
+const toast = document.getElementById('toast');
+let toastTimer = null;
+
+function showToast(message = 'Submitted successfully.') {
+  if (toast) {
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), 2600);
+  }
+  if (formStatus) formStatus.textContent = message;
+}
+
+contactForm?.addEventListener('submit', event => {
+  event.preventDefault();
+
+  if (!contactForm.checkValidity()) {
+    contactForm.reportValidity();
+    playTone(180, 0.06, 'sawtooth');
+    return;
+  }
+
+  showToast('Submitted successfully.');
+  playTone(520, 0.06, 'triangle');
+  setTimeout(() => playTone(760, 0.08, 'sine'), 90);
+  contactForm.reset();
+});
+
+contactForm?.querySelectorAll('input, textarea').forEach((field, i) => {
+  field.addEventListener('focus', () => playTone(310 + i * 28, 0.025, 'sine'));
+});
 
 /* =============================================================
    EASTER EGG - click name/logo 5x
