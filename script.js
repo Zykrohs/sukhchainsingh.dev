@@ -193,7 +193,7 @@ const canvas = document.getElementById('starfield');
 const ctx = canvas?.getContext('2d');
 let stars = [];
 let glyphs = [];
-const GLYPH_SET = ['0', '1', '01', '10', '$', '%', 'λ', '>', '<', '∑', 'π', '↑', '↓'];
+const GLYPH_SET = ['$', '€', '¥', '£', '%', '01', '10', '↑', '↓'];
 
 function resizeCanvas() {
   if (!canvas) return;
@@ -214,7 +214,7 @@ function resizeCanvas() {
     v: (Math.random() * 0.25 + 0.06) * window.devicePixelRatio,
     size: (Math.random() * 8 + 9) * window.devicePixelRatio,
     char: GLYPH_SET[Math.floor(Math.random() * GLYPH_SET.length)],
-    hue: Math.random() > .5 ? 'rgba(0,255,136,' : 'rgba(0,229,255,',
+    hue: Math.random() > .5 ? 'rgba(255,106,26,' : 'rgba(34,211,238,',
     alpha: Math.random() * 0.22 + 0.08
   }));
 }
@@ -227,8 +227,7 @@ function drawStars() {
     if (s.y > canvas.height) s.y = 0;
     ctx.beginPath();
     ctx.arc(s.x, s.y, s.r * window.devicePixelRatio, 0, Math.PI * 2);
-    const lightMode = document.documentElement.getAttribute('data-theme') === 'light';
-    ctx.fillStyle = lightMode ? `rgba(0,70,44,${Math.min(s.a, .28)})` : `rgba(0,255,136,${s.a})`;
+    ctx.fillStyle = `rgba(255,255,255,${s.a})`;
     ctx.fill();
   });
 
@@ -241,8 +240,7 @@ function drawStars() {
       g.char = GLYPH_SET[Math.floor(Math.random() * GLYPH_SET.length)];
     }
     ctx.font = `500 ${g.size}px JetBrains Mono, monospace`;
-    const lightGlyph = document.documentElement.getAttribute('data-theme') === 'light';
-    ctx.fillStyle = lightGlyph ? `rgba(0,70,44,${Math.min(g.alpha, .22)})` : `${g.hue}${g.alpha})`;
+    ctx.fillStyle = `${g.hue}${g.alpha})`;
     ctx.fillText(g.char, g.x, g.y);
   });
 
